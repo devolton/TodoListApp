@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "ZW1Y9gCUoKSq+QVCcvFXpdqumzQv/bQtZ03aJl3kV3LeNyK68Qw8Z7Mj0+V6lJ4fnqA7KFzA0Lc3ETKbf5FGTg==",
+  "success": true,
+  "projectFilePath": "D:\\C#WinForms\\TodoList\\TodoList.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Администратор\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.15\\microsoft.windowsdesktop.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\Администратор\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.15\\microsoft.netcore.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\Администратор\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.15\\microsoft.aspnetcore.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\Администратор\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.15\\microsoft.netcore.app.host.win-x64.7.0.15.nupkg.sha512"
+  ],
+  "logs": []
+}

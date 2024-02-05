@@ -1,0 +1,16 @@
+D:\C#WinForms\TodoList\obj\Debug\net7.0-windows\ToDoList.Form1.resources
+D:\C#WinForms\TodoList\obj\Debug\net7.0-windows\TodoList.csproj.GenerateResource.cache
+D:\C#WinForms\TodoList\obj\Debug\net7.0-windows\TodoList.GeneratedMSBuildEditorConfig.editorconfig
+D:\C#WinForms\TodoList\obj\Debug\net7.0-windows\TodoList.AssemblyInfoInputs.cache
+D:\C#WinForms\TodoList\obj\Debug\net7.0-windows\TodoList.AssemblyInfo.cs
+D:\C#WinForms\TodoList\obj\Debug\net7.0-windows\TodoList.csproj.CoreCompileInputs.cache
+D:\C#WinForms\TodoList\bin\Debug\net7.0-windows\TodoList.exe
+D:\C#WinForms\TodoList\bin\Debug\net7.0-windows\TodoList.deps.json
+D:\C#WinForms\TodoList\bin\Debug\net7.0-windows\TodoList.runtimeconfig.json
+D:\C#WinForms\TodoList\bin\Debug\net7.0-windows\TodoList.dll
+D:\C#WinForms\TodoList\bin\Debug\net7.0-windows\TodoList.pdb
+D:\C#WinForms\TodoList\obj\Debug\net7.0-windows\TodoList.dll
+D:\C#WinForms\TodoList\obj\Debug\net7.0-windows\refint\TodoList.dll
+D:\C#WinForms\TodoList\obj\Debug\net7.0-windows\TodoList.pdb
+D:\C#WinForms\TodoList\obj\Debug\net7.0-windows\TodoList.genruntimeconfig.cache
+D:\C#WinForms\TodoList\obj\Debug\net7.0-windows\ref\TodoList.dll

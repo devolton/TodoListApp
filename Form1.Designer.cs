@@ -35,7 +35,6 @@ namespace TodoList
         {
             label1 = new Label();
             taskTextBox = new TextBox();
-            checkBox1 = new CheckBox();
             addTaskButton = new Button();
             dateTimePicker = new DateTimePicker();
             label2 = new Label();
@@ -44,14 +43,7 @@ namespace TodoList
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
-            label8 = new Label();
-            label9 = new Label();
-            button2 = new Button();
-            button3 = new Button();
-            label10 = new Label();
-            todoPanel = new Panel();
             mainPanel = new Panel();
-            todoPanel.SuspendLayout();
             mainPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -75,16 +67,6 @@ namespace TodoList
             taskTextBox.Size = new Size(613, 45);
             taskTextBox.TabIndex = 1;
             // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(574, 21);
-            checkBox1.Margin = new Padding(3, 4, 3, 4);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(18, 17);
-            checkBox1.TabIndex = 2;
-            checkBox1.UseVisualStyleBackColor = true;
-            // 
             // addTaskButton
             // 
             addTaskButton.BackColor = Color.Green;
@@ -104,6 +86,7 @@ namespace TodoList
             dateTimePicker.Name = "dateTimePicker";
             dateTimePicker.Size = new Size(228, 27);
             dateTimePicker.TabIndex = 4;
+            dateTimePicker.ValueChanged += dateTimePicker_ValueChanged;
             // 
             // label2
             // 
@@ -164,73 +147,6 @@ namespace TodoList
             label7.TabIndex = 10;
             label7.Text = "Date";
             // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(12, 23);
-            label8.Name = "label8";
-            label8.Size = new Size(23, 25);
-            label8.TabIndex = 11;
-            label8.Text = "1";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(163, 21);
-            label9.Name = "label9";
-            label9.Size = new Size(154, 25);
-            label9.TabIndex = 12;
-            label9.Text = "Вынести мусор";
-            // 
-            // button2
-            // 
-            button2.BackColor = Color.Red;
-            button2.Location = new Point(742, 17);
-            button2.Margin = new Padding(3, 4, 3, 4);
-            button2.Name = "button2";
-            button2.Size = new Size(86, 31);
-            button2.TabIndex = 13;
-            button2.Text = "Remove";
-            button2.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            button3.BackColor = Color.Green;
-            button3.Location = new Point(834, 17);
-            button3.Margin = new Padding(3, 4, 3, 4);
-            button3.Name = "button3";
-            button3.Size = new Size(86, 31);
-            button3.TabIndex = 14;
-            button3.Text = "Execute";
-            button3.UseVisualStyleBackColor = false;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.BackColor = Color.DarkSeaGreen;
-            label10.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.Location = new Point(994, 15);
-            label10.Name = "label10";
-            label10.Size = new Size(207, 25);
-            label10.TabIndex = 15;
-            label10.Text = "пятница. 14 февраля";
-            // 
-            // todoPanel
-            // 
-            todoPanel.Controls.Add(label9);
-            todoPanel.Controls.Add(label10);
-            todoPanel.Controls.Add(label8);
-            todoPanel.Controls.Add(button3);
-            todoPanel.Controls.Add(checkBox1);
-            todoPanel.Controls.Add(button2);
-            todoPanel.Location = new Point(2, 229);
-            todoPanel.Margin = new Padding(3, 4, 3, 4);
-            todoPanel.Name = "todoPanel";
-            todoPanel.Size = new Size(1231, 68);
-            todoPanel.TabIndex = 16;
-            // 
             // mainPanel
             // 
             mainPanel.Controls.Add(label3);
@@ -250,7 +166,6 @@ namespace TodoList
             BackColor = Color.DarkSeaGreen;
             ClientSize = new Size(1227, 832);
             Controls.Add(mainPanel);
-            Controls.Add(todoPanel);
             Controls.Add(label2);
             Controls.Add(dateTimePicker);
             Controls.Add(addTaskButton);
@@ -260,8 +175,6 @@ namespace TodoList
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
-            todoPanel.ResumeLayout(false);
-            todoPanel.PerformLayout();
             mainPanel.ResumeLayout(false);
             mainPanel.PerformLayout();
             ResumeLayout(false);
@@ -272,7 +185,6 @@ namespace TodoList
 
         private Label label1;
         private TextBox taskTextBox;
-        private CheckBox checkBox1;
         private Button addTaskButton;
         private DateTimePicker dateTimePicker;
         private Label label2;
@@ -281,12 +193,6 @@ namespace TodoList
         private Label label5;
         private Label label6;
         private Label label7;
-        private Label label8;
-        private Label label9;
-        private Button button2;
-        private Button button3;
-        private Label label10;
-        private Panel todoPanel;
         private Panel mainPanel;
     }
 }

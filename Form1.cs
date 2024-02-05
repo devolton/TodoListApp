@@ -6,6 +6,7 @@ namespace TodoList
     {
         private Panel _lastPanel;
         CustomControlsGenerator _generator;
+        private int _lastId = 0;
 
         public Form1()
         {
@@ -21,24 +22,12 @@ namespace TodoList
 
         }
 
-        private void CreateOneTask()
+        private void CreateOneTask(TaskTest task)
         {
-            var task = new TaskTest()
-            {
-                Id = 2,
-                Description = "Create new project",
-                IsCompleted = true,
-                DeadliteDate = DateTime.Now
-
-            };
+          
             var panel = _generator.CreateOneTaskPanel(task, _lastPanel);
             _lastPanel = panel;
             Controls.Add(panel);
-
-
-
-
-
         }
 
 
@@ -46,7 +35,33 @@ namespace TodoList
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CreateOneTask();
+            if(TaskValidator.IsValidTask(taskTextBox.Text))
+            {
+
+                var task = new TaskTest()
+                {
+                    Id = ++_lastId,
+                    Description = taskTextBox.Text,
+                    IsCompleted = false,
+                    DeadliteDate = dateTimePicker.Value
+
+                };
+
+
+                CreateOneTask(task);
+            }
+            else
+            {
+                taskTextBox.BackColor = Color.Red;
+            }
+         
+                
+        }
+
+        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+
+            MessageBox.Show(dateTimePicker.Value.ToString("d"));
         }
     }
 }

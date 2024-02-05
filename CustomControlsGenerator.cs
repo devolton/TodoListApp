@@ -70,6 +70,11 @@ public class CustomControlsGenerator
         dateLabel.Text=task.DeadliteDate.ToString("d");
         return dateLabel;
     }
+    private void RemovePanel(object sender,EventArgs e)
+    {
+     
+
+    }
 
 }
 

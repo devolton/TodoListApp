@@ -14,3 +14,4 @@ D:\C#WinForms\TodoList\obj\Debug\net7.0-windows\refint\TodoList.dll
 D:\C#WinForms\TodoList\obj\Debug\net7.0-windows\TodoList.pdb
 D:\C#WinForms\TodoList\obj\Debug\net7.0-windows\TodoList.genruntimeconfig.cache
 D:\C#WinForms\TodoList\obj\Debug\net7.0-windows\ref\TodoList.dll
+D:\C#WinForms\TodoList\obj\Debug\net7.0-windows\TodoList.sourcelink.json

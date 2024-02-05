@@ -33,7 +33,6 @@ namespace TodoList
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             label1 = new Label();
             taskTextBox = new TextBox();
             checkBox1 = new CheckBox();
@@ -51,23 +50,24 @@ namespace TodoList
             button3 = new Button();
             label10 = new Label();
             todoPanel = new Panel();
+            mainPanel = new Panel();
             todoPanel.SuspendLayout();
+            mainPanel.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Stencil", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Stencil", 36F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(479, -4);
             label1.Name = "label1";
             label1.Size = new Size(337, 71);
             label1.TabIndex = 0;
             label1.Text = "To Do List";
-            label1.Click += label1_Click;
             // 
             // taskTextBox
             // 
-            taskTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            taskTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             taskTextBox.Location = new Point(266, 95);
             taskTextBox.Margin = new Padding(3, 4, 3, 4);
             taskTextBox.Multiline = true;
@@ -108,18 +108,17 @@ namespace TodoList
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label2.Location = new Point(2, 205);
             label2.Name = "label2";
-            label2.Size = new Size(1293, 20);
+            label2.Size = new Size(0, 20);
             label2.TabIndex = 5;
-            label2.Text = resources.GetString("label2.Text");
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(14, 172);
+            label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(12, 18);
             label3.Name = "label3";
             label3.Size = new Size(43, 32);
             label3.TabIndex = 6;
@@ -128,8 +127,8 @@ namespace TodoList
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(163, 172);
+            label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(160, 18);
             label4.Name = "label4";
             label4.Size = new Size(157, 32);
             label4.TabIndex = 7;
@@ -138,8 +137,8 @@ namespace TodoList
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(547, 172);
+            label5.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Location = new Point(541, 18);
             label5.Name = "label5";
             label5.Size = new Size(83, 32);
             label5.TabIndex = 8;
@@ -148,29 +147,27 @@ namespace TodoList
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(794, 172);
+            label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.Location = new Point(793, 18);
             label6.Name = "label6";
             label6.Size = new Size(100, 32);
             label6.TabIndex = 9;
             label6.Text = "Actions";
-            label6.Click += label6_Click;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(1068, 172);
+            label7.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.Location = new Point(1068, 18);
             label7.Name = "label7";
             label7.Size = new Size(67, 32);
             label7.TabIndex = 10;
             label7.Text = "Date";
-            label7.Click += label7_Click;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label8.Location = new Point(12, 23);
             label8.Name = "label8";
             label8.Size = new Size(23, 25);
@@ -180,7 +177,7 @@ namespace TodoList
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label9.Location = new Point(163, 21);
             label9.Name = "label9";
             label9.Size = new Size(154, 25);
@@ -213,13 +210,12 @@ namespace TodoList
             // 
             label10.AutoSize = true;
             label10.BackColor = Color.DarkSeaGreen;
-            label10.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label10.Location = new Point(994, 15);
             label10.Name = "label10";
             label10.Size = new Size(207, 25);
             label10.TabIndex = 15;
             label10.Text = "пятница. 14 февраля";
-            label10.Click += label10_Click;
             // 
             // todoPanel
             // 
@@ -234,7 +230,18 @@ namespace TodoList
             todoPanel.Name = "todoPanel";
             todoPanel.Size = new Size(1231, 68);
             todoPanel.TabIndex = 16;
-            todoPanel.Paint += panel1_Paint;
+            // 
+            // mainPanel
+            // 
+            mainPanel.Controls.Add(label3);
+            mainPanel.Controls.Add(label4);
+            mainPanel.Controls.Add(label7);
+            mainPanel.Controls.Add(label5);
+            mainPanel.Controls.Add(label6);
+            mainPanel.Location = new Point(2, 147);
+            mainPanel.Name = "mainPanel";
+            mainPanel.Size = new Size(1231, 68);
+            mainPanel.TabIndex = 17;
             // 
             // Form1
             // 
@@ -242,12 +249,8 @@ namespace TodoList
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSeaGreen;
             ClientSize = new Size(1227, 832);
+            Controls.Add(mainPanel);
             Controls.Add(todoPanel);
-            Controls.Add(label7);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(dateTimePicker);
             Controls.Add(addTaskButton);
@@ -259,6 +262,8 @@ namespace TodoList
             Load += Form1_Load;
             todoPanel.ResumeLayout(false);
             todoPanel.PerformLayout();
+            mainPanel.ResumeLayout(false);
+            mainPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -282,6 +287,7 @@ namespace TodoList
         private Button button3;
         private Label label10;
         private Panel todoPanel;
+        private Panel mainPanel;
     }
 }
 

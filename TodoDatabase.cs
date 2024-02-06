@@ -37,5 +37,14 @@ namespace TodoList
             ";
             _command.ExecuteNonQuery();
         }
+
+        public static void AddTask(TaskTest task)
+        {
+            _command.CommandText =
+                "INSERT INTO TodoDatabase(descriptions, status, deadlineDate) " +
+                $"VALUES('{task.Description}', {task.IsCompleted}, '{task.DeadliteDate}' )";
+
+            _command.ExecuteNonQuery();
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace TodoList
         {
             InitializeComponent();
             _lastPanel = mainPanel;
-            _generator = new CustomControlsGenerator();
+            _generator = new CustomControlsGenerator(this);
 
 
         }

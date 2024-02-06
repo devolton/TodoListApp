@@ -7,12 +7,17 @@ namespace TodoList
         private Panel _lastPanel;
         CustomControlsGenerator _generator;
         private int _lastId = 0;
+        private List<Panel> _panelsList;
+        private List<TaskTest> _taskList;
 
         public Form1()
         {
             InitializeComponent();
             _lastPanel = mainPanel;
-            _generator = new CustomControlsGenerator(this);
+            _panelsList = new List<Panel>();
+            _taskList = new List<TaskTest>();
+            _generator = new CustomControlsGenerator(this,_taskList,_panelsList);
+          
 
 
         }
@@ -24,10 +29,13 @@ namespace TodoList
 
         private void CreateOneTask(TaskTest task)
         {
-          
+            _taskList.Add(task);
             var panel = _generator.CreateOneTaskPanel(task, _lastPanel);
+            _panelsList.Add(panel);
             _lastPanel = panel;
             Controls.Add(panel);
+          
+            
         }
 
 
@@ -35,7 +43,7 @@ namespace TodoList
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(TaskValidator.IsValidTask(taskTextBox.Text))
+            if (TaskValidator.IsValidTask(taskTextBox.Text))
             {
 
                 var task = new TaskTest()
@@ -46,22 +54,43 @@ namespace TodoList
                     DeadliteDate = dateTimePicker.Value
 
                 };
-
-
                 CreateOneTask(task);
+                taskTextBox.Text = "";
             }
             else
             {
                 taskTextBox.BackColor = Color.Red;
+                taskTextBox.Text = "";
             }
-         
-                
+
+
         }
 
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
 
             MessageBox.Show(dateTimePicker.Value.ToString("d"));
+        }
+
+        private void taskTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(addTaskButton, e);
+            }
+        }
+
+        private void taskTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (TaskValidator.IsValidTask(taskTextBox.Text) || taskTextBox.Text == "")
+            {
+                taskTextBox.BackColor = Color.White;
+
+            }
+            else
+            {
+                taskTextBox.BackColor = Color.Red;
+            }
         }
     }
 }

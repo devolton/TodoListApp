@@ -66,6 +66,8 @@ namespace TodoList
             taskTextBox.Name = "taskTextBox";
             taskTextBox.Size = new Size(613, 45);
             taskTextBox.TabIndex = 1;
+            taskTextBox.TextChanged += taskTextBox_TextChanged;
+            taskTextBox.KeyDown += taskTextBox_KeyDown;
             // 
             // addTaskButton
             // 
@@ -173,6 +175,7 @@ namespace TodoList
             Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;
             mainPanel.ResumeLayout(false);

@@ -43,7 +43,7 @@ namespace TodoList
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (TaskValidator.IsValidTask(taskTextBox.Text) && TaskValidator.IsValidDeadlineDate(dateTimePicker.Value))
+            if (TaskValidator.IsValidTask(taskTextBox.Text))
             {
 
                 var task = new TaskTest()

@@ -67,7 +67,6 @@ namespace TodoList
             taskTextBox.Size = new Size(613, 45);
             taskTextBox.TabIndex = 1;
             taskTextBox.TextChanged += taskTextBox_TextChanged;
-            taskTextBox.KeyDown += taskTextBox_KeyDown;
             // 
             // addTaskButton
             // 

@@ -43,7 +43,7 @@ namespace TodoList
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (TaskValidator.IsValidTask(taskTextBox.Text))
+            if (TaskValidator.IsValidTask(taskTextBox.Text) && TaskValidator.IsValidDeadlineDate(dateTimePicker.Value))
             {
 
                 var task = new TaskTest()
@@ -55,7 +55,7 @@ namespace TodoList
 
                 };
                 CreateOneTask(task);
-                taskTextBox.Text = "";
+               
             }
             else
             {
@@ -72,13 +72,7 @@ namespace TodoList
             MessageBox.Show(dateTimePicker.Value.ToString("d"));
         }
 
-        private void taskTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                button1_Click(addTaskButton, e);
-            }
-        }
+    
 
         private void taskTextBox_TextChanged(object sender, EventArgs e)
         {

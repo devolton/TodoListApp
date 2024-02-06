@@ -164,7 +164,7 @@ public class CustomControlsGenerator
         {
             int currentXCoordinate = _panelsList[i].Location.X;
             int currentYCoordinate = _panelsList[i].Location.Y;
-            _panelsList[i].Location = new Point(currentXCoordinate, currentYCoordinate -_PANEL_Y_COORDINATE_STEP);//вынести в переменную
+            _panelsList[i].Location = new Point(currentXCoordinate, currentYCoordinate -_PANEL_Y_COORDINATE_STEP);
         }
         
     }

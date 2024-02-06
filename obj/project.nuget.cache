@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "R2yCZMH/X8KOF2j15WQJyg8FDB0pkoa38mIpyHvh0QZG5q5WZ05je959QylVbG3S3nemUPojDGD32SaLB2pIWA==",
+  "dgSpecHash": "rG1TXKJpXaeefWyEmkJNGfseloEqd6SvKtfLe5OO0ay48wlsAEay/kgj2OtZh9Z63vzts3n4HTpNY/XqoKxF1Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Desktop\\важно\\TodoListApp\\TodoList.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Desktop\\TodoListApp\\TodoList.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.data.sqlite\\7.0.15\\microsoft.data.sqlite.7.0.15.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.15\\microsoft.data.sqlite.core.7.0.15.nupkg.sha512",

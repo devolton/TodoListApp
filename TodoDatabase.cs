@@ -46,5 +46,26 @@ namespace TodoList
 
             _command.ExecuteNonQuery();
         }
+
+        public static void UpdateTask(TaskTest task)
+        {
+            _command.CommandText =
+                @"
+                UPDATE TodoDatabase 
+                SET
+                    descriptions = $descriptions,
+                    status = $status,
+                    deadlineDate = $deadlineDate
+                WHERE id = $id
+            ";
+            _command.Parameters.AddWithValue("$id", task.Id);
+            _command.Parameters.AddWithValue("$descriptions", task.Description);
+            _command.Parameters.AddWithValue("$status", task.IsCompleted);
+            _command.Parameters.AddWithValue("$deadlineDate", task.DeadliteDate);
+
+            _command.ExecuteNonQuery();
+        }
     }
+
 }
+

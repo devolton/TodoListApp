@@ -19,7 +19,12 @@ namespace TodoList
         private void Form1_Load(object sender, EventArgs e)
         {
             //загружаются таски
-
+            TodoDatabase.UpdateTask(new TaskTest
+            {
+                Id = 1,
+                Description = "rabotaet?",
+                IsCompleted = false
+            });
         }
 
         private void CreateOneTask(TaskTest task)

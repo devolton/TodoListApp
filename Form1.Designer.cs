@@ -60,7 +60,7 @@ namespace TodoList
             // taskTextBox
             // 
             taskTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            taskTextBox.Location = new Point(266, 95);
+            taskTextBox.Location = new Point(203, 95);
             taskTextBox.Margin = new Padding(3, 4, 3, 4);
             taskTextBox.Multiline = true;
             taskTextBox.Name = "taskTextBox";
@@ -71,10 +71,14 @@ namespace TodoList
             // addTaskButton
             // 
             addTaskButton.BackColor = Color.Green;
-            addTaskButton.Location = new Point(887, 95);
+            addTaskButton.FlatAppearance.BorderSize = 0;
+            addTaskButton.FlatStyle = FlatStyle.Flat;
+            addTaskButton.Font = new Font("Georgia", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            addTaskButton.ForeColor = SystemColors.Info;
+            addTaskButton.Location = new Point(838, 95);
             addTaskButton.Margin = new Padding(3, 4, 3, 4);
             addTaskButton.Name = "addTaskButton";
-            addTaskButton.Size = new Size(86, 47);
+            addTaskButton.Size = new Size(113, 47);
             addTaskButton.TabIndex = 3;
             addTaskButton.Text = "Add";
             addTaskButton.UseVisualStyleBackColor = false;
@@ -82,10 +86,10 @@ namespace TodoList
             // 
             // dateTimePicker
             // 
-            dateTimePicker.Location = new Point(985, 100);
+            dateTimePicker.Location = new Point(1006, 95);
             dateTimePicker.Margin = new Padding(3, 4, 3, 4);
             dateTimePicker.Name = "dateTimePicker";
-            dateTimePicker.Size = new Size(228, 27);
+            dateTimePicker.Size = new Size(180, 27);
             dateTimePicker.TabIndex = 4;
             dateTimePicker.ValueChanged += dateTimePicker_ValueChanged;
             // 

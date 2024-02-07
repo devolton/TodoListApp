@@ -13,6 +13,8 @@ public class CustomControlsGenerator
     private readonly string _taskDescriptionTextBoxName;
     private readonly string _checkBoxName;
     private readonly string _dateLabelName;
+    private readonly string _confirmChangesButtonName;
+    private readonly string _cancelChangesButtonName;
     public CustomControlsGenerator(Form1 form, List<TaskTest> taskList, List<Panel> panelsList)
     {
         _form = form;
@@ -26,6 +28,8 @@ public class CustomControlsGenerator
         _checkBoxName = "isDoneCheckBox";
         _taskDescriptionTextBoxName = "descriptionTextBox";
         _dateLabelName = "dateLabel";
+        _confirmChangesButtonName = "confirmChangesButtonName";
+        _cancelChangesButtonName = "cancelChangesButtonName";
     }
     public Panel CreateOneTaskPanel(TaskTest task, Panel lastPanel)
     {
@@ -35,7 +39,8 @@ public class CustomControlsGenerator
         panel.Size = lastPanel.Size;
         panel.TabIndex = task.Id;
         panel.Controls.AddRange(new Control[] { CreateNumLabel(task), CreateDescriptionLabel(task),
-            CreateCheckBox(task),CreateRemoveButton(),CreateUpdateButton(),CreateDateLabel(task),CreateDescriptionTextBox(task) });
+            CreateCheckBox(task),CreateRemoveButton(),CreateUpdateButton(),CreateDateLabel(task),
+            CreateDescriptionTextBox(task),CreateCancelChangesButton(),CreateConfirmChangesButton() });
         return panel;
 
 
@@ -70,6 +75,7 @@ public class CustomControlsGenerator
         checkBox.Size = new Size(18, 18);
         checkBox.Name = _checkBoxName;
         checkBox.Checked = task.IsCompleted;
+        checkBox.CheckedChanged += CheckedChanged;
         return checkBox;
     }
     private Label CreateNumLabel(TaskTest task)
@@ -112,6 +118,28 @@ public class CustomControlsGenerator
 
         return descriptionTextBox;
     }
+    private Button CreateConfirmChangesButton()
+    {
+        var confirmButton = new Button();
+        confirmButton.Size = new Size(25, 25);
+        confirmButton.Location = new Point(340, 20);
+        confirmButton.BackColor = Color.Green;
+        confirmButton.Visible = false;
+        confirmButton.FlatStyle = FlatStyle.Flat;
+        confirmButton.Name = _confirmChangesButtonName;
+        return confirmButton;
+    }
+    private Button CreateCancelChangesButton()
+    {
+        var cancelButton = new Button();
+        cancelButton.Size = new Size(25, 25);
+        cancelButton.Location = new Point(380, 20);
+        cancelButton.BackColor = Color.Red;
+        cancelButton.Visible = false;
+        cancelButton.FlatStyle = FlatStyle.Flat;
+        cancelButton.Name = _cancelChangesButtonName;
+        return cancelButton;
+    }
 
     private void RemovePanel(object sender, EventArgs e)
     {
@@ -130,17 +158,29 @@ public class CustomControlsGenerator
     {
         var updateButton = sender as Button;
         var form = updateButton.Parent;
+        var removeButton = form.Controls[_removeButtonName] as Button;
         var descLabel = form.Controls[_taskDescriptionLabelName] as Label;
         var decsTextBox = form.Controls[_taskDescriptionTextBoxName] as TextBox;
+        var confirmChangesButton = form.Controls[_confirmChangesButtonName] as Button;
+        var cancelChangesButton = form.Controls[_cancelChangesButtonName] as Button;
         if (descLabel.Visible)
         {
+            confirmChangesButton.Visible = true;
+            cancelChangesButton.Visible = true;
             descLabel.Visible = false;
             decsTextBox.Visible = true;
+            updateButton.Enabled = false;
+            removeButton.Enabled = false;
+
         }
         else
         {
+            cancelChangesButton.Visible = false;
+            confirmChangesButton.Visible = false;
             descLabel.Visible = true;
             decsTextBox.Visible = false;
+            updateButton.Enabled = true;
+            removeButton.Enabled = true;
         }
     }
     private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
@@ -168,6 +208,18 @@ public class CustomControlsGenerator
         }
         
     }
+    private void CheckedChanged(object sender, EventArgs e)
+    {
+        var checkBox = sender as CheckBox;
+        var panel = checkBox.Parent;
+        var updataButton = panel.Controls[_updataButtonName];
+        updataButton.Enabled = false;
+        checkBox.Enabled = false;
+        panel.BackColor = Color.YellowGreen;
+    }
+
+    
+ 
 
 
 }

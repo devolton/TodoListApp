@@ -16,15 +16,20 @@ namespace TodoList
             _lastPanel = mainPanel;
             _panelsList = new List<Panel>();
             _taskList = new List<TaskTest>();
-            _generator = new CustomControlsGenerator(this,_taskList,_panelsList);
-          
+            _generator = new CustomControlsGenerator(this, _taskList, _panelsList);
+
 
 
         }
         private void Form1_Load(object sender, EventArgs e)
         {
             //загружаются таски
-
+            TodoDatabase.UpdateTask(new TaskTest
+            {
+                Id = 1,
+                Description = "rabotaet?",
+                IsCompleted = false
+            });
         }
 
         private void CreateOneTask(TaskTest task)
@@ -34,8 +39,8 @@ namespace TodoList
             _panelsList.Add(panel);
             _lastPanel = panel;
             Controls.Add(panel);
-          
-            
+
+
         }
 
 
@@ -55,7 +60,7 @@ namespace TodoList
 
                 };
                 CreateOneTask(task);
-               
+
             }
             else
             {
@@ -72,7 +77,7 @@ namespace TodoList
             MessageBox.Show(dateTimePicker.Value.ToString("d"));
         }
 
-    
+
 
         private void taskTextBox_TextChanged(object sender, EventArgs e)
         {

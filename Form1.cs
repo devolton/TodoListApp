@@ -1,4 +1,5 @@
 using System.Drawing.Text;
+using System.Numerics;
 
 namespace TodoList
 {
@@ -10,6 +11,7 @@ namespace TodoList
         private List<Panel> _panelsList;
         private List<TaskTest> _taskList;
 
+        private List<TaskTest> _tasks;
         public Form1()
         {
             InitializeComponent();
@@ -23,13 +25,8 @@ namespace TodoList
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            //загружаются таски
-            TodoDatabase.UpdateTask(new TaskTest
-            {
-                Id = 1,
-                Description = "rabotaet?",
-                IsCompleted = false
-            });
+            _tasks = TodoDatabase.GetAllTask().ToList();
+            PrintTask(_tasks);
         }
 
         private void CreateOneTask(TaskTest task)
@@ -85,6 +82,15 @@ namespace TodoList
             else
             {
                 taskTextBox.BackColor = Color.Red;
+            }
+        }
+
+
+        private void PrintTask(IEnumerable<TaskTest> task)
+        {
+            foreach (var t in task)
+            {
+                MessageBox.Show(($" {t.Id} {t.Description} {t.IsCompleted} {t.DeadliteDate}"));
             }
         }
     }

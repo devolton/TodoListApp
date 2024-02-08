@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
@@ -64,6 +65,31 @@ namespace TodoList
             _command.Parameters.AddWithValue("$deadlineDate", task.DeadliteDate);
 
             _command.ExecuteNonQuery();
+        }
+
+        public static IEnumerable<TaskTest> GetAllTask()
+        {
+            _command.CommandText = $"SELECT * FROM TodoDatabase";
+            using var reader = _command.ExecuteReader();
+            while (reader.Read())
+            {
+                yield return new TaskTest()
+                {
+                    Id = reader.GetInt32(0),
+                    Description = reader.GetString(1),
+                    IsCompleted = reader.GetBoolean(2),
+                    DeadliteDate = reader.GetDateTime(3),
+                   
+                };
+            }
+            reader.Close();
+
+        }
+
+        public static void RemoveTaskById(int id)
+        {
+            _command.CommandText = $"DELETE FROM TodoDatabase WHERE id={id}";
+            _command.ExecuteReader();
         }
     }
 

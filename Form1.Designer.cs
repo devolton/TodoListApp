@@ -64,6 +64,7 @@ namespace TodoList
             taskTextBox.Margin = new Padding(3, 4, 3, 4);
             taskTextBox.Multiline = true;
             taskTextBox.Name = "taskTextBox";
+            taskTextBox.PlaceholderText = "Task...";
             taskTextBox.Size = new Size(613, 45);
             taskTextBox.TabIndex = 1;
             taskTextBox.TextChanged += taskTextBox_TextChanged;
@@ -91,7 +92,6 @@ namespace TodoList
             dateTimePicker.Name = "dateTimePicker";
             dateTimePicker.Size = new Size(180, 27);
             dateTimePicker.TabIndex = 4;
-            dateTimePicker.ValueChanged += dateTimePicker_ValueChanged;
             // 
             // label2
             // 

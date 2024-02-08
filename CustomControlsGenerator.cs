@@ -15,11 +15,19 @@ public class CustomControlsGenerator
     private readonly string _dateLabelName;
     private readonly string _confirmChangesButtonName;
     private readonly string _cancelChangesButtonName;
+    private readonly string _cancelButtonImgPath;
+    private Image _cancelButtonBackground;
+    private readonly string _confirmButtonImgPath;
+    private Image _confirmButtonBackground;
     public CustomControlsGenerator(Form1 form, List<TaskTest> taskList, List<Panel> panelsList)
     {
         _form = form;
         _tasksList = taskList;
         _panelsList = panelsList;
+        _confirmButtonImgPath = "../../../img/confirmButton.png";
+        _cancelButtonImgPath = "../../../img/cancelButton.png";
+        _cancelButtonBackground = Image.FromFile(_cancelButtonImgPath);
+        _confirmButtonBackground = Image.FromFile(_confirmButtonImgPath);
         _panelName = "oneTaskPanel";
         _taskDescriptionLabelName = "descriptionLabel";
         _taskNumberLabelName = "taskNumberLabel";
@@ -40,7 +48,7 @@ public class CustomControlsGenerator
         panel.TabIndex = task.Id;
         panel.Controls.AddRange(new Control[] { CreateNumLabel(task), CreateDescriptionLabel(task),
             CreateCheckBox(task),CreateRemoveButton(),CreateUpdateButton(),CreateDateLabel(task),
-            CreateDescriptionTextBox(task),CreateCancelChangesButton(),CreateConfirmChangesButton() });
+            CreateDescriptionTextBox(task),CreateCancelChangesButton(task),CreateConfirmChangesButton(task) });
         return panel;
 
 
@@ -115,29 +123,96 @@ public class CustomControlsGenerator
         descriptionTextBox.Name = _taskDescriptionTextBoxName;
         descriptionTextBox.Text = task.Description;
         descriptionTextBox.Visible = false;
+        descriptionTextBox.TextChanged += (sender, e) =>
+        {
+            var descriptionTextBox = sender as TextBox;
+            var panel = descriptionTextBox.Parent as Panel;
+            var confirmButton = panel.Controls[_confirmChangesButtonName];
+
+            if (TaskValidator.IsValidTask(descriptionTextBox.Text))
+            {
+                descriptionTextBox.BackColor = Color.White;
+                confirmButton.Enabled = true;
+                descriptionTextBox.ForeColor = Color.Black;
+
+            }
+            else{
+                confirmButton.Enabled = false;
+                descriptionTextBox.BackColor = Color.Red;
+                descriptionTextBox.ForeColor = Color.White;
+
+            }
+        };
 
         return descriptionTextBox;
     }
-    private Button CreateConfirmChangesButton()
+    private Button CreateConfirmChangesButton(TaskTest task)
     {
         var confirmButton = new Button();
         confirmButton.Size = new Size(25, 25);
         confirmButton.Location = new Point(340, 20);
-        confirmButton.BackColor = Color.Green;
+        confirmButton.BackColor = Color.White;
         confirmButton.Visible = false;
         confirmButton.FlatStyle = FlatStyle.Flat;
+        confirmButton.FlatAppearance.BorderSize = 0;
         confirmButton.Name = _confirmChangesButtonName;
+        confirmButton.BackgroundImageLayout = ImageLayout.Stretch;
+        confirmButton.BackgroundImage = _confirmButtonBackground;
+        confirmButton.Click += (sender, e) =>
+        {
+            var button = sender as Button;
+            var panel = button.Parent as Panel;
+            var cancelButton = panel.Controls[_cancelChangesButtonName] as Button;
+            var descTextBox = panel.Controls[_taskDescriptionTextBoxName] as TextBox;
+            var descLabel = panel.Controls[_taskDescriptionLabelName] as Label;
+            var updataButton = panel.Controls[_updataButtonName] as Button;
+            var removeButton = panel.Controls[_removeButtonName] as Button;
+            updataButton.Enabled = true;
+            removeButton.Enabled = true;
+            task.Description = descTextBox.Text;
+            descLabel.Text = task.Description;
+            descTextBox.Visible = false;
+            confirmButton.Visible = false;
+            cancelButton.Visible = false;
+            descLabel.Visible = true;
+            
+            //Update at database
+
+        };
         return confirmButton;
     }
-    private Button CreateCancelChangesButton()
+    private Button CreateCancelChangesButton(TaskTest task)
     {
         var cancelButton = new Button();
         cancelButton.Size = new Size(25, 25);
         cancelButton.Location = new Point(380, 20);
-        cancelButton.BackColor = Color.Red;
+        cancelButton.BackColor = Color.White;
         cancelButton.Visible = false;
+        cancelButton.FlatAppearance.BorderSize = 0;
         cancelButton.FlatStyle = FlatStyle.Flat;
         cancelButton.Name = _cancelChangesButtonName;
+        cancelButton.BackgroundImage = _cancelButtonBackground;
+        cancelButton.BackgroundImageLayout=ImageLayout.Stretch;
+        cancelButton.Click += (sender, e) =>
+        {
+            var button = sender as Button;
+            var panel = button.Parent as Panel;
+            var descLabel = panel.Controls[_taskDescriptionLabelName] as Label;
+            var descTextBox = panel.Controls[_taskDescriptionTextBoxName] as TextBox;
+            var confirmButton = panel.Controls[_confirmChangesButtonName] as Button;
+            var updataButton = panel.Controls[_updataButtonName] as Button;
+            var removeButton = panel.Controls[_removeButtonName] as Button;
+            updataButton.Enabled = true;
+            removeButton.Enabled = true;
+            descLabel.Text = task.Description;
+            button.Visible = false;
+            descTextBox.Visible = false;
+            confirmButton.Visible = false;
+            descLabel.Visible = true;
+
+
+        };
+       
         return cancelButton;
     }
 
@@ -151,6 +226,7 @@ public class CustomControlsGenerator
         //add delete from database
         _form.Controls.Remove(panel);
         RecalculationNewPanelsLocation(taskIndex);
+        _form.UpdataLastPanel();
         OnePanelDispose(panel);
 
     }

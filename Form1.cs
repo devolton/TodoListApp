@@ -42,15 +42,16 @@ namespace TodoList
 
 
         }
+        public void UpdataLastPanel()=>_lastPanel=(_panelsList.Count != 0) ? _panelsList[_panelsList.Count - 1] : mainPanel;
+        
 
 
 
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (TaskValidator.IsValidTask(taskTextBox.Text))
+            if (TaskValidator.IsValidTask(taskTextBox.Text) && TaskValidator.IsValidDeadlineDate(dateTimePicker.Value))
             {
-
                 var task = new TaskTest()
                 {
                     Id = ++_lastId,
@@ -71,11 +72,6 @@ namespace TodoList
 
         }
 
-        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-
-            MessageBox.Show(dateTimePicker.Value.ToString("d"));
-        }
 
 
 

@@ -1,9 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "ZW1Y9gCUoKSq+QVCcvFXpdqumzQv/bQtZ03aJl3kV3LeNyK68Qw8Z7Mj0+V6lJ4fnqA7KFzA0Lc3ETKbf5FGTg==",
+  "dgSpecHash": "Dp5uDyD8O+LPuVkQeUbk/rIrl8hxHWTdIZc7MJ9bAY0erbymkQkk6jfPuL/zMIGz+bejwXaFYMn4bQheLbhUxQ==",
   "success": true,
   "projectFilePath": "D:\\C#WinForms\\TodoList\\TodoList.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Администратор\\.nuget\\packages\\microsoft.data.sqlite\\7.0.15\\microsoft.data.sqlite.7.0.15.nupkg.sha512",
+    "C:\\Users\\Администратор\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.15\\microsoft.data.sqlite.core.7.0.15.nupkg.sha512",
+    "C:\\Users\\Администратор\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.4\\sqlitepclraw.bundle_e_sqlite3.2.1.4.nupkg.sha512",
+    "C:\\Users\\Администратор\\.nuget\\packages\\sqlitepclraw.core\\2.1.4\\sqlitepclraw.core.2.1.4.nupkg.sha512",
+    "C:\\Users\\Администратор\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.4\\sqlitepclraw.lib.e_sqlite3.2.1.4.nupkg.sha512",
+    "C:\\Users\\Администратор\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.4\\sqlitepclraw.provider.e_sqlite3.2.1.4.nupkg.sha512",
+    "C:\\Users\\Администратор\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\Администратор\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.15\\microsoft.windowsdesktop.app.ref.7.0.15.nupkg.sha512",
     "C:\\Users\\Администратор\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.15\\microsoft.netcore.app.ref.7.0.15.nupkg.sha512",
     "C:\\Users\\Администратор\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.15\\microsoft.aspnetcore.app.ref.7.0.15.nupkg.sha512",

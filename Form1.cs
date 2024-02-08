@@ -1,4 +1,5 @@
 using System.Drawing.Text;
+using System.Numerics;
 
 namespace TodoList
 {
@@ -8,6 +9,7 @@ namespace TodoList
         CustomControlsGenerator _generator;
         private int _lastId = 0;
 
+        private List<TaskTest> _tasks;
         public Form1()
         {
             InitializeComponent();
@@ -18,17 +20,8 @@ namespace TodoList
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            //загружаются таски
-            //TodoDatabase.UpdateTask(new TaskTest
-            //{
-            //    Id = 1,
-            //    Description = "rabotaet?",
-            //    IsCompleted = false
-            //});
-
-
-
-            TodoDatabase.RemoveTaskById(1);
+            _tasks = TodoDatabase.GetAllTask().ToList();
+            PrintTask(_tasks);
         }
 
         private void CreateOneTask(TaskTest task)
@@ -71,6 +64,15 @@ namespace TodoList
         {
 
             MessageBox.Show(dateTimePicker.Value.ToString("d"));
+        }
+
+
+        private void PrintTask(IEnumerable<TaskTest> task)
+        {
+            foreach (var t in task)
+            {
+                MessageBox.Show(($" {t.Id} {t.Description} {t.IsCompleted} {t.DeadliteDate}"));
+            }
         }
     }
 }

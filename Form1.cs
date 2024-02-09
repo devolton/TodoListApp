@@ -31,7 +31,7 @@ namespace TodoList
                 Controls.Add(panel);
             }
             _lastId = (_tasksList.Count != 0) ? _tasksList[_tasksList.Count - 1].Id : 0;
- 
+
 
             _generator.InitServiceFields(this, _tasksList, _panelsList);
         }
@@ -62,7 +62,7 @@ namespace TodoList
                     Id = ++_lastId,
                     Description = taskTextBox.Text,
                     IsCompleted = false,
-                    DeadliteDate = dateTimePicker.Value.ToString("yyyy-MM-dd")
+                    DeadliteDate = (dateTimePicker.Value.ToShortDateString() == DateTime.Now.ToShortDateString()) ? "" : dateTimePicker.Value.ToString("yyyy-MM-dd")
 
                 };
                 CreateOneTask(task);

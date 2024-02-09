@@ -66,22 +66,31 @@ public class CustomControlsGenerator
     private Button CreateRemoveButton()
     {
         var removeButton = new Button();
-        removeButton.Location = new Point(742, 17);
-        removeButton.Size = new Size(85, 30);
+        removeButton.Location = new Point(742, 30);
+        removeButton.Size = new Size(85, 40);
         removeButton.BackColor = Color.Red;
         removeButton.Name = _removeButtonName;
         removeButton.Text = "Remove";
+        removeButton.ForeColor = Color.White;
+        removeButton.ForeColor = Color.White;
+        removeButton.FlatAppearance.BorderSize = 0;
+        removeButton.FlatStyle = FlatStyle.Flat;
+        removeButton.Font=new Font("Impact", 10);
         removeButton.Click += RemovePanel;
         return removeButton;
     }
     private Button CreateUpdateButton()
     {
         var updataButton = new Button();
-        updataButton.Location = new Point(835, 17);
-        updataButton.Size = new Size(85, 30);
+        updataButton.Location = new Point(835, 30);
+        updataButton.Size = new Size(85, 40);
         updataButton.BackColor = Color.Green;
-        updataButton.Text = "Update...";
+        updataButton.Text = "Updata";
         updataButton.Name = _updataButtonName;
+        updataButton.ForeColor = Color.White;
+        updataButton.FlatAppearance.BorderSize = 0;
+        updataButton.FlatStyle = FlatStyle.Flat;
+        updataButton.Font=new Font("Impact",10);
         updataButton.Click += UpdataDescription;
         return updataButton;
     }
@@ -89,8 +98,7 @@ public class CustomControlsGenerator
     private CheckBox CreateCheckBox(TaskTest task,Button updateButton)
     {
         var checkBox = new CheckBox();
-        checkBox.Location = new Point(575, 21);
-        checkBox.Size = new Size(18, 18);
+        checkBox.Location = new Point(570, 40);
         checkBox.Name = _checkBoxName;
         checkBox.Checked = task.IsCompleted;
         if (checkBox.Checked)
@@ -104,28 +112,35 @@ public class CustomControlsGenerator
     private Label CreateNumLabel(TaskTest task)
     {
         var taskNumberLabel = new Label();
-        taskNumberLabel.Location = new Point(11, 21);
+        taskNumberLabel.Location = new Point(17, 33);
         taskNumberLabel.Size = new Size(40, 25);
         taskNumberLabel.Name = _taskNumberLabelName;
         taskNumberLabel.Text = task.Id.ToString();
+        taskNumberLabel.Font = new Font("Georgia", 12, FontStyle.Regular);
+        taskNumberLabel.ForeColor = Color.BlanchedAlmond;
         return taskNumberLabel;
     }
     private Label CreateDescriptionLabel(TaskTest task)
     {
         var descriptionLabel = new Label();
-        descriptionLabel.Size = new Size(160, 25);
-        descriptionLabel.Location = new Point(165, 20);
+        descriptionLabel.Size = new Size(300, 60);
+        descriptionLabel.Location = new Point(120, 20);
         descriptionLabel.Name = _taskDescriptionLabelName;
         descriptionLabel.Text = task.Description;
+        descriptionLabel.Font=new Font("Georgia",10,FontStyle.Regular);
+        descriptionLabel.TextAlign = ContentAlignment.MiddleCenter;
         return descriptionLabel;
     }
     private Label CreateDateLabel(TaskTest task)
     {
         var dateLabel = new Label();
-        dateLabel.Location = new Point(995, 17);
-        dateLabel.Size = new Size(205, 25);
+        dateLabel.Location = new Point(1000, 17);
+        dateLabel.Size = new Size(205, 60);
         dateLabel.Name =_dateLabelName;
         dateLabel.Text = task.DeadliteDate;
+        dateLabel.TextAlign= ContentAlignment.MiddleCenter;
+        dateLabel.Font = new Font("Georgia", 12, FontStyle.Regular);
+        dateLabel.ForeColor = Color.BlanchedAlmond;
         return dateLabel;
     }
 
@@ -133,10 +148,12 @@ public class CustomControlsGenerator
     private TextBox CreateDescriptionTextBox(TaskTest task)
     {
         var descriptionTextBox = new TextBox();
-        descriptionTextBox.Size = new Size(160, 25);
-        descriptionTextBox.Location = new Point(165, 20);
+        descriptionTextBox.Size = new Size(200, 35);
+        descriptionTextBox.Location = new Point(165, 30);
         descriptionTextBox.Name = _taskDescriptionTextBoxName;
         descriptionTextBox.Text = task.Description;
+        descriptionTextBox.Font = new Font("Georgia", 12);
+        
         descriptionTextBox.Visible = false;
         descriptionTextBox.TextChanged += (sender, e) =>
         {
@@ -165,7 +182,7 @@ public class CustomControlsGenerator
     {
         var confirmButton = new Button();
         confirmButton.Size = new Size(25, 25);
-        confirmButton.Location = new Point(340, 20);
+        confirmButton.Location = new Point(377, 32);
         confirmButton.BackColor = Color.White;
         confirmButton.Visible = false;
         confirmButton.FlatStyle = FlatStyle.Flat;
@@ -203,7 +220,7 @@ public class CustomControlsGenerator
     {
         var cancelButton = new Button();
         cancelButton.Size = new Size(25, 25);
-        cancelButton.Location = new Point(380, 20);
+        cancelButton.Location = new Point(410, 32);
         cancelButton.BackColor = Color.White;
         cancelButton.Visible = false;
         cancelButton.FlatAppearance.BorderSize = 0;

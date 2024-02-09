@@ -52,7 +52,7 @@ namespace TodoList
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Stencil", 36F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(479, -4);
+            label1.Location = new Point(479, 9);
             label1.Name = "label1";
             label1.Size = new Size(337, 71);
             label1.TabIndex = 0;
@@ -61,12 +61,12 @@ namespace TodoList
             // taskTextBox
             // 
             taskTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            taskTextBox.Location = new Point(203, 95);
+            taskTextBox.Location = new Point(123, 95);
             taskTextBox.Margin = new Padding(3, 4, 3, 4);
             taskTextBox.Multiline = true;
             taskTextBox.Name = "taskTextBox";
             taskTextBox.PlaceholderText = "Task...";
-            taskTextBox.Size = new Size(613, 45);
+            taskTextBox.Size = new Size(735, 45);
             taskTextBox.TabIndex = 1;
             taskTextBox.TextChanged += taskTextBox_TextChanged;
             // 
@@ -77,10 +77,10 @@ namespace TodoList
             addTaskButton.FlatStyle = FlatStyle.Flat;
             addTaskButton.Font = new Font("Georgia", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             addTaskButton.ForeColor = SystemColors.Info;
-            addTaskButton.Location = new Point(838, 95);
+            addTaskButton.Location = new Point(856, 95);
             addTaskButton.Margin = new Padding(3, 4, 3, 4);
             addTaskButton.Name = "addTaskButton";
-            addTaskButton.Size = new Size(113, 47);
+            addTaskButton.Size = new Size(144, 45);
             addTaskButton.TabIndex = 3;
             addTaskButton.Text = "Add";
             addTaskButton.UseVisualStyleBackColor = false;
@@ -88,10 +88,10 @@ namespace TodoList
             // 
             // dateTimePicker
             // 
-            dateTimePicker.Location = new Point(1006, 95);
+            dateTimePicker.Location = new Point(1036, 104);
             dateTimePicker.Margin = new Padding(3, 4, 3, 4);
             dateTimePicker.Name = "dateTimePicker";
-            dateTimePicker.Size = new Size(180, 27);
+            dateTimePicker.Size = new Size(160, 27);
             dateTimePicker.TabIndex = 4;
             // 
             // label2
@@ -106,52 +106,52 @@ namespace TodoList
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             label3.Location = new Point(12, 18);
             label3.Name = "label3";
-            label3.Size = new Size(43, 32);
+            label3.Size = new Size(42, 31);
             label3.TabIndex = 6;
             label3.Text = "№";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(160, 18);
+            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label4.Location = new Point(201, 18);
             label4.Name = "label4";
-            label4.Size = new Size(157, 32);
+            label4.Size = new Size(148, 31);
             label4.TabIndex = 7;
             label4.Text = "Descriptions";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             label5.Location = new Point(541, 18);
             label5.Name = "label5";
-            label5.Size = new Size(83, 32);
+            label5.Size = new Size(80, 31);
             label5.TabIndex = 8;
             label5.Text = "Status";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
             label6.Location = new Point(793, 18);
             label6.Name = "label6";
-            label6.Size = new Size(100, 32);
+            label6.Size = new Size(95, 31);
             label6.TabIndex = 9;
             label6.Text = "Actions";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(1068, 18);
+            label7.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label7.Location = new Point(1053, 18);
             label7.Name = "label7";
-            label7.Size = new Size(67, 32);
+            label7.Size = new Size(109, 31);
             label7.TabIndex = 10;
-            label7.Text = "Date";
+            label7.Text = "Deadline";
             // 
             // mainPanel
             // 
@@ -162,7 +162,7 @@ namespace TodoList
             mainPanel.Controls.Add(label6);
             mainPanel.Location = new Point(2, 147);
             mainPanel.Name = "mainPanel";
-            mainPanel.Size = new Size(1231, 68);
+            mainPanel.Size = new Size(1231, 89);
             mainPanel.TabIndex = 17;
             // 
             // Form1
@@ -170,15 +170,17 @@ namespace TodoList
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSeaGreen;
-            ClientSize = new Size(1227, 832);
+            ClientSize = new Size(1227, 803);
             Controls.Add(mainPanel);
             Controls.Add(label2);
             Controls.Add(dateTimePicker);
             Controls.Add(addTaskButton);
             Controls.Add(taskTextBox);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";

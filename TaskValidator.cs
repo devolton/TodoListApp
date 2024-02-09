@@ -7,7 +7,7 @@ public static class TaskValidator
     
     static TaskValidator()
     {
-        _taskregex = new Regex("^[\\wа-яА-Я\\d\\s()-_@!?]{6,64}$");
+        _taskregex = new Regex("^[\\wа-яА-Я\\d\\s()-_@!?]{6,128}$");
     }
     public static bool IsValidTask(string task) => _taskregex.IsMatch(task);
     public static bool IsValidDeadlineDate(DateTime deadline) => deadline >= DateTime.Now.AddDays(-1);

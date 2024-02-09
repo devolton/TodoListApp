@@ -94,9 +94,9 @@ namespace TodoList
 
         private void taskTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
-                button1_Click(addTaskButton,new EventArgs());
+                button1_Click(addTaskButton, new EventArgs());
             }
         }
     }

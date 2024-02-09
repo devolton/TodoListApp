@@ -176,6 +176,7 @@ namespace TodoList
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
             BackColor = Color.DarkSeaGreen;
             ClientSize = new Size(1227, 803);
             Controls.Add(mainPanel);

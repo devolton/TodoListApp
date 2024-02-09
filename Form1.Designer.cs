@@ -33,6 +33,7 @@ namespace TodoList
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             label1 = new Label();
             taskTextBox = new TextBox();
             addTaskButton = new Button();
@@ -176,6 +177,7 @@ namespace TodoList
             Controls.Add(addTaskButton);
             Controls.Add(taskTextBox);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;

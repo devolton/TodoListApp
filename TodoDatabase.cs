@@ -8,9 +8,9 @@ using Microsoft.Data.Sqlite;
 
 namespace TodoList
 {
-    public class TodoDatabase
+    public static class TodoDatabase
     {
-        private static readonly string _databaseName = "TodoDatabase.db";
+        private static readonly string _databaseName = "../../../TodoDatabase.db";
         private static readonly SqliteConnection _connection;
         private static readonly SqliteCommand _command;
 
@@ -51,18 +51,15 @@ namespace TodoList
         public static void UpdateTask(TaskTest task)
         {
             _command.CommandText =
-                @"
+                $@"
                 UPDATE TodoDatabase 
                 SET
-                    descriptions = $descriptions,
-                    status = $status,
-                    deadlineDate = $deadlineDate
-                WHERE id = $id
+                    descriptions = '{task.Description}',
+                    status = {task.IsCompleted},
+                    deadlineDate = '{task.DeadliteDate}'
+                WHERE id = {task.Id}
             ";
-            _command.Parameters.AddWithValue("$id", task.Id);
-            _command.Parameters.AddWithValue("$descriptions", task.Description);
-            _command.Parameters.AddWithValue("$status", task.IsCompleted);
-            _command.Parameters.AddWithValue("$deadlineDate", task.DeadliteDate);
+       
 
             _command.ExecuteNonQuery();
         }
@@ -78,7 +75,7 @@ namespace TodoList
                     Id = reader.GetInt32(0),
                     Description = reader.GetString(1),
                     IsCompleted = reader.GetBoolean(2),
-                    DeadliteDate = reader.GetDateTime(3),
+                    DeadliteDate = reader.GetString(3),
                    
                 };
             }
@@ -89,7 +86,7 @@ namespace TodoList
         public static void RemoveTaskById(int id)
         {
             _command.CommandText = $"DELETE FROM TodoDatabase WHERE id={id}";
-            _command.ExecuteReader();
+            _command.ExecuteNonQuery();
         }
     }
 

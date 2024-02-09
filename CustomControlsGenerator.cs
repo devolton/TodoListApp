@@ -19,11 +19,8 @@ public class CustomControlsGenerator
     private Image _cancelButtonBackground;
     private readonly string _confirmButtonImgPath;
     private Image _confirmButtonBackground;
-    public CustomControlsGenerator(Form1 form, List<TaskTest> taskList, List<Panel> panelsList)
+    public CustomControlsGenerator()
     {
-        _form = form;
-        _tasksList = taskList;
-        _panelsList = panelsList;
         _confirmButtonImgPath = "../../../img/confirmButton.png";
         _cancelButtonImgPath = "../../../img/cancelButton.png";
         _cancelButtonBackground = Image.FromFile(_cancelButtonImgPath);
@@ -39,6 +36,13 @@ public class CustomControlsGenerator
         _confirmChangesButtonName = "confirmChangesButtonName";
         _cancelChangesButtonName = "cancelChangesButtonName";
     }
+
+    public void InitServiceFields(Form1 form, List<TaskTest> taskList, List<Panel> panelsList)
+    {
+        _form = form;
+        _tasksList = taskList;
+        _panelsList=panelsList;
+    }
     public Panel CreateOneTaskPanel(TaskTest task, Panel lastPanel)
     {
         var panel = new Panel();
@@ -46,9 +50,15 @@ public class CustomControlsGenerator
         panel.Name = _panelName;
         panel.Size = lastPanel.Size;
         panel.TabIndex = task.Id;
+        if (task.IsCompleted)
+        {
+            panel.BackColor = Color.YellowGreen;
+
+        }
+        var updateButton = CreateUpdateButton();
         panel.Controls.AddRange(new Control[] { CreateNumLabel(task), CreateDescriptionLabel(task),
-            CreateCheckBox(task),CreateRemoveButton(),CreateUpdateButton(),CreateDateLabel(task),
-            CreateDescriptionTextBox(task),CreateCancelChangesButton(task),CreateConfirmChangesButton(task) });
+            CreateRemoveButton(),updateButton,CreateDateLabel(task),
+            CreateDescriptionTextBox(task),CreateCancelChangesButton(task),CreateConfirmChangesButton(task),CreateCheckBox(task,updateButton) });
         return panel;
 
 
@@ -76,13 +86,18 @@ public class CustomControlsGenerator
         return updataButton;
     }
 
-    private CheckBox CreateCheckBox(TaskTest task)
+    private CheckBox CreateCheckBox(TaskTest task,Button updateButton)
     {
         var checkBox = new CheckBox();
         checkBox.Location = new Point(575, 21);
         checkBox.Size = new Size(18, 18);
         checkBox.Name = _checkBoxName;
         checkBox.Checked = task.IsCompleted;
+        if (checkBox.Checked)
+        {
+            checkBox.Enabled = false;
+            updateButton.Enabled = false;
+        }
         checkBox.CheckedChanged += CheckedChanged;
         return checkBox;
     }
@@ -90,7 +105,7 @@ public class CustomControlsGenerator
     {
         var taskNumberLabel = new Label();
         taskNumberLabel.Location = new Point(11, 21);
-        taskNumberLabel.Size = new Size(23, 25);
+        taskNumberLabel.Size = new Size(40, 25);
         taskNumberLabel.Name = _taskNumberLabelName;
         taskNumberLabel.Text = task.Id.ToString();
         return taskNumberLabel;
@@ -110,7 +125,7 @@ public class CustomControlsGenerator
         dateLabel.Location = new Point(995, 17);
         dateLabel.Size = new Size(205, 25);
         dateLabel.Name =_dateLabelName;
-        dateLabel.Text = task.DeadliteDate.ToString("d");
+        dateLabel.Text = task.DeadliteDate;
         return dateLabel;
     }
 
@@ -160,6 +175,7 @@ public class CustomControlsGenerator
         confirmButton.BackgroundImage = _confirmButtonBackground;
         confirmButton.Click += (sender, e) =>
         {
+        
             var button = sender as Button;
             var panel = button.Parent as Panel;
             var cancelButton = panel.Controls[_cancelChangesButtonName] as Button;
@@ -171,12 +187,14 @@ public class CustomControlsGenerator
             removeButton.Enabled = true;
             task.Description = descTextBox.Text;
             descLabel.Text = task.Description;
+            TodoDatabase.UpdateTask(task);
             descTextBox.Visible = false;
             confirmButton.Visible = false;
             cancelButton.Visible = false;
             descLabel.Visible = true;
+
             
-            //Update at database
+         
 
         };
         return confirmButton;
@@ -222,8 +240,8 @@ public class CustomControlsGenerator
         var panel = button.Parent as Panel;
         var taskIndex = _panelsList.IndexOf(panel);
         _panelsList.RemoveAt(taskIndex);
+        TodoDatabase.RemoveTaskById(_tasksList[taskIndex].Id);
         _tasksList.RemoveAt(taskIndex);
-        //add delete from database
         _form.Controls.Remove(panel);
         RecalculationNewPanelsLocation(taskIndex);
         _form.UpdataLastPanel();
@@ -259,11 +277,6 @@ public class CustomControlsGenerator
             removeButton.Enabled = true;
         }
     }
-    private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
-    {
-        //add changing Task at database
-
-    }
 
     private void OnePanelDispose(Panel panel)
     {
@@ -287,11 +300,14 @@ public class CustomControlsGenerator
     private void CheckedChanged(object sender, EventArgs e)
     {
         var checkBox = sender as CheckBox;
-        var panel = checkBox.Parent;
+        var panel = checkBox.Parent as Panel;
         var updataButton = panel.Controls[_updataButtonName];
+        var taskIndex = _panelsList.IndexOf(panel);
+        _tasksList[taskIndex].IsCompleted = true;
         updataButton.Enabled = false;
         checkBox.Enabled = false;
         panel.BackColor = Color.YellowGreen;
+        TodoDatabase.UpdateTask(_tasksList[taskIndex]);
     }
 
     

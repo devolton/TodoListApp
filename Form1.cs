@@ -7,31 +7,39 @@ namespace TodoList
     {
         private Panel _lastPanel;
         CustomControlsGenerator _generator;
-        private int _lastId = 0;
+        private int _lastId;
         private List<Panel> _panelsList;
-        private List<TaskTest> _taskList;
-
-        private List<TaskTest> _tasks;
+        private List<TaskTest> _tasksList;
         public Form1()
         {
             InitializeComponent();
             _lastPanel = mainPanel;
             _panelsList = new List<Panel>();
-            _taskList = new List<TaskTest>();
-            _generator = new CustomControlsGenerator(this, _taskList, _panelsList);
 
+            _generator = new CustomControlsGenerator();
 
 
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            _tasks = TodoDatabase.GetAllTask().ToList();
-            PrintTask(_tasks);
+            _tasksList = TodoDatabase.GetAllTask().ToList() ?? new List<TaskTest>();
+            foreach (var oneTask in _tasksList)
+            {
+                var panel = _generator.CreateOneTaskPanel(oneTask, _lastPanel);
+                _panelsList.Add(panel);
+                _lastPanel = panel;
+                Controls.Add(panel);
+            }
+            _lastId = (_tasksList.Count != 0) ? _tasksList[_tasksList.Count - 1].Id : 0;
+ 
+
+            _generator.InitServiceFields(this, _tasksList, _panelsList);
         }
 
         private void CreateOneTask(TaskTest task)
         {
-            _taskList.Add(task);
+            _tasksList.Add(task);
+            TodoDatabase.AddTask(task);
             var panel = _generator.CreateOneTaskPanel(task, _lastPanel);
             _panelsList.Add(panel);
             _lastPanel = panel;
@@ -39,8 +47,8 @@ namespace TodoList
 
 
         }
-        public void UpdataLastPanel()=>_lastPanel=(_panelsList.Count != 0) ? _panelsList[_panelsList.Count - 1] : mainPanel;
-        
+        public void UpdataLastPanel() => _lastPanel = (_panelsList.Count != 0) ? _panelsList[_panelsList.Count - 1] : mainPanel;
+
 
 
 
@@ -54,7 +62,7 @@ namespace TodoList
                     Id = ++_lastId,
                     Description = taskTextBox.Text,
                     IsCompleted = false,
-                    DeadliteDate = dateTimePicker.Value
+                    DeadliteDate = dateTimePicker.Value.ToString("yyyy-MM-dd")
 
                 };
                 CreateOneTask(task);
@@ -86,12 +94,6 @@ namespace TodoList
         }
 
 
-        private void PrintTask(IEnumerable<TaskTest> task)
-        {
-            foreach (var t in task)
-            {
-                MessageBox.Show(($" {t.Id} {t.Description} {t.IsCompleted} {t.DeadliteDate}"));
-            }
-        }
+
     }
 }

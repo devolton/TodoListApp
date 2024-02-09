@@ -52,6 +52,7 @@ namespace TodoList
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Stencil", 36F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.ForestGreen;
             label1.Location = new Point(479, 9);
             label1.Name = "label1";
             label1.Size = new Size(337, 71);
@@ -69,6 +70,7 @@ namespace TodoList
             taskTextBox.Size = new Size(735, 45);
             taskTextBox.TabIndex = 1;
             taskTextBox.TextChanged += taskTextBox_TextChanged;
+            taskTextBox.KeyDown += taskTextBox_KeyDown;
             // 
             // addTaskButton
             // 
@@ -107,6 +109,7 @@ namespace TodoList
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label3.ForeColor = Color.White;
             label3.Location = new Point(12, 18);
             label3.Name = "label3";
             label3.Size = new Size(42, 31);
@@ -117,6 +120,7 @@ namespace TodoList
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label4.ForeColor = Color.White;
             label4.Location = new Point(201, 18);
             label4.Name = "label4";
             label4.Size = new Size(148, 31);
@@ -127,6 +131,7 @@ namespace TodoList
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label5.ForeColor = Color.White;
             label5.Location = new Point(541, 18);
             label5.Name = "label5";
             label5.Size = new Size(80, 31);
@@ -137,6 +142,7 @@ namespace TodoList
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label6.ForeColor = Color.White;
             label6.Location = new Point(793, 18);
             label6.Name = "label6";
             label6.Size = new Size(95, 31);
@@ -147,6 +153,7 @@ namespace TodoList
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label7.ForeColor = Color.White;
             label7.Location = new Point(1053, 18);
             label7.Name = "label7";
             label7.Size = new Size(109, 31);

@@ -66,6 +66,7 @@ namespace TodoList
 
                 };
                 CreateOneTask(task);
+                taskTextBox.Text = "";
 
             }
             else
@@ -76,8 +77,6 @@ namespace TodoList
 
 
         }
-
-
 
 
         private void taskTextBox_TextChanged(object sender, EventArgs e)
@@ -93,7 +92,12 @@ namespace TodoList
             }
         }
 
-
-
+        private void taskTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                button1_Click(addTaskButton,new EventArgs());
+            }
+        }
     }
 }

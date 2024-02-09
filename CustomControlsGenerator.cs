@@ -1,4 +1,6 @@
-﻿namespace TodoList;
+﻿using System.Threading.Tasks;
+
+namespace TodoList;
 public class CustomControlsGenerator
 {
     private Form1 _form;
@@ -41,7 +43,7 @@ public class CustomControlsGenerator
     {
         _form = form;
         _tasksList = taskList;
-        _panelsList=panelsList;
+        _panelsList = panelsList;
     }
     public Panel CreateOneTaskPanel(TaskTest task, Panel lastPanel)
     {
@@ -67,15 +69,7 @@ public class CustomControlsGenerator
     {
         var removeButton = new Button();
         removeButton.Location = new Point(742, 30);
-        removeButton.Size = new Size(85, 40);
-        removeButton.BackColor = Color.Red;
-        removeButton.Name = _removeButtonName;
-        removeButton.Text = "Remove";
-        removeButton.ForeColor = Color.White;
-        removeButton.ForeColor = Color.White;
-        removeButton.FlatAppearance.BorderSize = 0;
-        removeButton.FlatStyle = FlatStyle.Flat;
-        removeButton.Font=new Font("Impact", 10);
+        StylizingCommonButtonProp(removeButton, _removeButtonName);
         removeButton.Click += RemovePanel;
         return removeButton;
     }
@@ -83,19 +77,12 @@ public class CustomControlsGenerator
     {
         var updataButton = new Button();
         updataButton.Location = new Point(835, 30);
-        updataButton.Size = new Size(85, 40);
-        updataButton.BackColor = Color.Green;
-        updataButton.Text = "Updata";
-        updataButton.Name = _updataButtonName;
-        updataButton.ForeColor = Color.White;
-        updataButton.FlatAppearance.BorderSize = 0;
-        updataButton.FlatStyle = FlatStyle.Flat;
-        updataButton.Font=new Font("Impact",10);
+        StylizingCommonButtonProp(updataButton, _updataButtonName);
         updataButton.Click += UpdataDescription;
         return updataButton;
     }
 
-    private CheckBox CreateCheckBox(TaskTest task,Button updateButton)
+    private CheckBox CreateCheckBox(TaskTest task, Button updateButton)
     {
         var checkBox = new CheckBox();
         checkBox.Location = new Point(570, 40);
@@ -127,7 +114,7 @@ public class CustomControlsGenerator
         descriptionLabel.Location = new Point(120, 20);
         descriptionLabel.Name = _taskDescriptionLabelName;
         descriptionLabel.Text = task.Description;
-        descriptionLabel.Font=new Font("Georgia",10,FontStyle.Regular);
+        descriptionLabel.Font = new Font("Georgia", 10, FontStyle.Regular);
         descriptionLabel.TextAlign = ContentAlignment.MiddleCenter;
         return descriptionLabel;
     }
@@ -136,9 +123,9 @@ public class CustomControlsGenerator
         var dateLabel = new Label();
         dateLabel.Location = new Point(1000, 17);
         dateLabel.Size = new Size(205, 60);
-        dateLabel.Name =_dateLabelName;
+        dateLabel.Name = _dateLabelName;
         dateLabel.Text = task.DeadliteDate;
-        dateLabel.TextAlign= ContentAlignment.MiddleCenter;
+        dateLabel.TextAlign = ContentAlignment.MiddleCenter;
         dateLabel.Font = new Font("Georgia", 12, FontStyle.Regular);
         dateLabel.ForeColor = Color.BlanchedAlmond;
         return dateLabel;
@@ -153,7 +140,7 @@ public class CustomControlsGenerator
         descriptionTextBox.Name = _taskDescriptionTextBoxName;
         descriptionTextBox.Text = task.Description;
         descriptionTextBox.Font = new Font("Georgia", 12);
-        
+
         descriptionTextBox.Visible = false;
         descriptionTextBox.TextChanged += (sender, e) =>
         {
@@ -168,7 +155,8 @@ public class CustomControlsGenerator
                 descriptionTextBox.ForeColor = Color.Black;
 
             }
-            else{
+            else
+            {
                 confirmButton.Enabled = false;
                 descriptionTextBox.BackColor = Color.Red;
                 descriptionTextBox.ForeColor = Color.White;
@@ -181,73 +169,18 @@ public class CustomControlsGenerator
     private Button CreateConfirmChangesButton(TaskTest task)
     {
         var confirmButton = new Button();
-        confirmButton.Size = new Size(25, 25);
         confirmButton.Location = new Point(377, 32);
-        confirmButton.BackColor = Color.White;
-        confirmButton.Visible = false;
-        confirmButton.FlatStyle = FlatStyle.Flat;
-        confirmButton.FlatAppearance.BorderSize = 0;
-        confirmButton.Name = _confirmChangesButtonName;
-        confirmButton.BackgroundImageLayout = ImageLayout.Stretch;
-        confirmButton.BackgroundImage = _confirmButtonBackground;
-        confirmButton.Click += (sender, e) =>
-        {
-        
-            var button = sender as Button;
-            var panel = button.Parent as Panel;
-            var cancelButton = panel.Controls[_cancelChangesButtonName] as Button;
-            var descTextBox = panel.Controls[_taskDescriptionTextBoxName] as TextBox;
-            var descLabel = panel.Controls[_taskDescriptionLabelName] as Label;
-            var updataButton = panel.Controls[_updataButtonName] as Button;
-            var removeButton = panel.Controls[_removeButtonName] as Button;
-            updataButton.Enabled = true;
-            removeButton.Enabled = true;
-            task.Description = descTextBox.Text;
-            descLabel.Text = task.Description;
-            TodoDatabase.UpdateTask(task);
-            descTextBox.Visible = false;
-            confirmButton.Visible = false;
-            cancelButton.Visible = false;
-            descLabel.Visible = true;
-
-            
-         
-
-        };
+        StylizingChangeButton(confirmButton, _confirmChangesButtonName);
+        confirmButton.Click += ClickCancelOrConfirmButton;
         return confirmButton;
     }
     private Button CreateCancelChangesButton(TaskTest task)
     {
         var cancelButton = new Button();
-        cancelButton.Size = new Size(25, 25);
         cancelButton.Location = new Point(410, 32);
-        cancelButton.BackColor = Color.White;
-        cancelButton.Visible = false;
-        cancelButton.FlatAppearance.BorderSize = 0;
-        cancelButton.FlatStyle = FlatStyle.Flat;
-        cancelButton.Name = _cancelChangesButtonName;
-        cancelButton.BackgroundImage = _cancelButtonBackground;
-        cancelButton.BackgroundImageLayout=ImageLayout.Stretch;
-        cancelButton.Click += (sender, e) =>
-        {
-            var button = sender as Button;
-            var panel = button.Parent as Panel;
-            var descLabel = panel.Controls[_taskDescriptionLabelName] as Label;
-            var descTextBox = panel.Controls[_taskDescriptionTextBoxName] as TextBox;
-            var confirmButton = panel.Controls[_confirmChangesButtonName] as Button;
-            var updataButton = panel.Controls[_updataButtonName] as Button;
-            var removeButton = panel.Controls[_removeButtonName] as Button;
-            updataButton.Enabled = true;
-            removeButton.Enabled = true;
-            descLabel.Text = task.Description;
-            button.Visible = false;
-            descTextBox.Visible = false;
-            confirmButton.Visible = false;
-            descLabel.Visible = true;
+        StylizingChangeButton(cancelButton, _cancelChangesButtonName);
+        cancelButton.Click += ClickCancelOrConfirmButton;
 
-
-        };
-       
         return cancelButton;
     }
 
@@ -272,32 +205,23 @@ public class CustomControlsGenerator
         var removeButton = form.Controls[_removeButtonName] as Button;
         var descLabel = form.Controls[_taskDescriptionLabelName] as Label;
         var decsTextBox = form.Controls[_taskDescriptionTextBoxName] as TextBox;
+        var checkBox = form.Controls[_checkBoxName] as CheckBox;
         var confirmChangesButton = form.Controls[_confirmChangesButtonName] as Button;
         var cancelChangesButton = form.Controls[_cancelChangesButtonName] as Button;
-        if (descLabel.Visible)
-        {
-            confirmChangesButton.Visible = true;
-            cancelChangesButton.Visible = true;
-            descLabel.Visible = false;
-            decsTextBox.Visible = true;
-            updateButton.Enabled = false;
-            removeButton.Enabled = false;
+        confirmChangesButton.Visible = true;
+        cancelChangesButton.Visible = true;
+        descLabel.Visible = false;
+        decsTextBox.Visible = true;
+        updateButton.Enabled = false;
+        removeButton.Enabled = false;
+        checkBox.Enabled = false;
 
-        }
-        else
-        {
-            cancelChangesButton.Visible = false;
-            confirmChangesButton.Visible = false;
-            descLabel.Visible = true;
-            decsTextBox.Visible = false;
-            updateButton.Enabled = true;
-            removeButton.Enabled = true;
-        }
+
     }
 
     private void OnePanelDispose(Panel panel)
     {
-        foreach(var control in panel.Controls)
+        foreach (var control in panel.Controls)
         {
             var oneElement = control as Control;
             oneElement?.Dispose();
@@ -306,13 +230,13 @@ public class CustomControlsGenerator
     }
     private void RecalculationNewPanelsLocation(int index)
     {
-        for(int i = index; i < _panelsList.Count; i++)
+        for (int i = index; i < _panelsList.Count; i++)
         {
             int currentXCoordinate = _panelsList[i].Location.X;
             int currentYCoordinate = _panelsList[i].Location.Y;
-            _panelsList[i].Location = new Point(currentXCoordinate, currentYCoordinate -_PANEL_Y_COORDINATE_STEP);
+            _panelsList[i].Location = new Point(currentXCoordinate, currentYCoordinate - _PANEL_Y_COORDINATE_STEP);
         }
-        
+
     }
     private void CheckedChanged(object sender, EventArgs e)
     {
@@ -326,9 +250,80 @@ public class CustomControlsGenerator
         panel.BackColor = Color.YellowGreen;
         TodoDatabase.UpdateTask(_tasksList[taskIndex]);
     }
+    private void StylizingCommonButtonProp(Button button, string buttonName)
+    {
+        button.Size = new Size(85, 40);
+        button.ForeColor = Color.White;
+        button.FlatAppearance.BorderSize = 0;
+        button.FlatStyle = FlatStyle.Flat;
+        button.Font = new Font("Impact", 10);
+        if (buttonName == _removeButtonName)
+        {
+            button.Text = "Remove";
+            button.BackColor = Color.Red;
+            button.Name = _removeButtonName;
+        }
+        else
+        {
+            button.BackColor = Color.Green;
+            button.Text = "Updata";
+            button.Name = _updataButtonName;
+        }
 
-    
- 
+    }
+
+    private void StylizingChangeButton(Button button, string buttonName)
+    {
+        button.Size = new Size(25, 25);
+        button.BackColor = Color.White;
+        button.Visible = false;
+        button.FlatStyle = FlatStyle.Flat;
+        button.FlatAppearance.BorderSize = 0;
+        button.BackgroundImageLayout = ImageLayout.Stretch;
+        if (buttonName == _confirmChangesButtonName)
+        {
+            button.Name = _confirmChangesButtonName;
+            button.BackgroundImage = _confirmButtonBackground;
+        }
+        else
+        {
+            button.Name = _cancelChangesButtonName;
+            button.BackgroundImage = _cancelButtonBackground;
+        }
+
+    }
+    private void ClickCancelOrConfirmButton(object sender, EventArgs e)
+    {
+
+        var button = sender as Button;
+        var panel = button.Parent as Panel;
+        var taskIndex = _panelsList.IndexOf(panel);
+        var checkBox = panel.Controls[_checkBoxName] as CheckBox;
+        var cancelButton = panel.Controls[_cancelChangesButtonName] as Button;
+        var descTextBox = panel.Controls[_taskDescriptionTextBoxName] as TextBox;
+        var descLabel = panel.Controls[_taskDescriptionLabelName] as Label;
+        var updataButton = panel.Controls[_updataButtonName] as Button;
+        var removeButton = panel.Controls[_removeButtonName] as Button;
+        checkBox.Enabled = true;
+        updataButton.Enabled = true;
+        removeButton.Enabled = true;
+        if (button.Name == _confirmChangesButtonName)
+        {
+            _tasksList[taskIndex].Description = descTextBox.Text;
+            descLabel.Text = _tasksList[taskIndex].Description;
+            TodoDatabase.UpdateTask(_tasksList[taskIndex]);
+        }
+        else
+        {
+            descLabel.Text = _tasksList[taskIndex].Description;
+        }
+        descTextBox.Visible = false;
+        button.Visible = false;
+        cancelButton.Visible = false;
+        descLabel.Visible = true;
+    }
+
+
 
 
 }
